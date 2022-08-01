@@ -8,12 +8,34 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - name: Test case (1) "-foo_BAR-"
+        uses: ./
         id: test-1
         with:
           value: -foo_BAR-
-      - run: |
-          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug }}" ]]
-          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug-cs }}" ]]
-          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug-url }}" ]]
-          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug-url-cs }}" ]]
+      - name: Validate test case (1)
+        run: |
+          echo "${{ steps.test-1.outputs.slug }}"
+          echo "${{ steps.test-1.outputs.slug-cs }}"
+          echo "${{ steps.test-1.outputs.slug-url }}"
+          echo "${{ steps.test-1.outputs.slug-url-cs }}"
+          [[ "foo_bar" == "${{ steps.test-1.outputs.slug }}" ]]
+          [[ "foo_BAR" == "${{ steps.test-1.outputs.slug-cs }}" ]]
+          [[ "foo-bar" == "${{ steps.test-1.outputs.slug-url }}" ]]
+          [[ "foo-BAR" == "${{ steps.test-1.outputs.slug-url-cs }}" ]]
+      - name: Test case (2) slug-maxlength
+        uses: ./
+        id: test-2
+        with:
+          value: AbcdEfghI_jklmnOpqrstUvwxyz
+          slug-maxlength: 10
+      - name: Validate test case (2)
+        run: |
+          echo "${{ steps.test-2.outputs.slug }}"
+          echo "${{ steps.test-2.outputs.slug-cs }}"
+          echo "${{ steps.test-2.outputs.slug-url }}"
+          echo "${{ steps.test-2.outputs.slug-url-cs }}"
+          [[ "abcdefghi_" == "${{ steps.test-2.outputs.slug }}" ]]
+          [[ "AbcdEfghI_" == "${{ steps.test-2.outputs.slug-cs }}" ]]
+          [[ "abcdefghi" == "${{ steps.test-2.outputs.slug-url }}" ]]
+          [[ "AbcdEfghI" == "${{ steps.test-2.outputs.slug-url-cs }}" ]]          

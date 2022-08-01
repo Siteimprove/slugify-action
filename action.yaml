@@ -10,9 +10,21 @@ inputs:
     default: "29"
     required: true
 outputs:
-  slug:
+  value:
     description: "Value to be slugified"
+    value: ${{ steps.slugify.outputs.value }}
+  slug:
+    description: "Slugified value"
     value: ${{ steps.slugify.outputs.slug }}
+  slug-cs:
+    description: "Slugified value (case-sensitive)"
+    value: ${{ steps.slugify.outputs.slug-cs }}
+  slug-url:
+    description: "Slugified value url"
+    value: ${{ steps.slugify.outputs.slug-url }}
+  slug-url-cs:
+    description: "Slugified value url (case-sensitive)"
+    value: ${{ steps.slugify.outputs.slug-url-cs }}
 
 runs:
   using: "composite"

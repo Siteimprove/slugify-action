@@ -28,11 +28,16 @@ reduce() {
 }
 
 SLUG=$(slug "${VALUE,,}")
-SLUG_CS=$(slug "$VALUE")
+SLUG_CS=$(slug "${VALUE}")
 SLUG_URL=$(slug_url "${VALUE,,}")
-SLUG_URL_CS=$(slug_url "$CS_VALUE")
+SLUG_URL_CS=$(slug_url "${VALUE}")
 
-echo "::set-output name=value::${SLUG}"
+echo "SLUG: ${SLUG}"
+echo "SLUG_CS: ${SLUG_CS}"
+echo "SLUG_URL: ${SLUG_URL}"
+echo "SLUG_URL_CS: ${SLUG_URL_CS}"
+
+echo "::set-output name=value::${VALUE}"
 echo "::set-output name=slug::${SLUG}"
 echo "::set-output name=slug-cs::${SLUG_CS}"
 echo "::set-output name=slug-url::${SLUG_URL}"

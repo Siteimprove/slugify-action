@@ -1,0 +1,26 @@
+name: "Slugify value"
+description: "Slugify a value"
+
+inputs:
+  value:
+    description: "Value to be slugified"
+    required: true
+  slug-maxlength:
+    description: "Max length of the slugified value"
+    default: "29"
+    required: true
+outputs:
+  slug:
+    description: "Value to be slugified"
+    value: ${{ steps.slugify.outputs.slug }}
+
+runs:
+  using: "composite"
+  steps:
+  - name: Slugify
+    id: slugify
+    shell: bash
+    run: $GITHUB_ACTION_PATH/slugify.sh
+    env:
+      VALUE: ${{ inputs.value }}
+      MAXLENGTH: ${{ inputs.slug-maxlength }}

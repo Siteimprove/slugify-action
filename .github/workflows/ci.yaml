@@ -1,0 +1,19 @@
+name: CI
+
+on: push
+
+jobs:
+  verify:
+    name: Verify github action
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        id: test-1
+        with:
+          value: -foo_BAR-
+      - run: |
+          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug }}" ]]
+          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug-cs }}" ]]
+          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug-url }}" ]]
+          [[ "-foo_BAR-" == "${{ steps.test-1.outputs.slug-url-cs }}" ]]

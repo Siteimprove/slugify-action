@@ -35,7 +35,7 @@ jobs:
           echo "${{ steps.test-2.outputs.slug-cs }}"
           echo "${{ steps.test-2.outputs.slug-url }}"
           echo "${{ steps.test-2.outputs.slug-url-cs }}"
-          [[ "abcdefghi" == "${{ steps.test-2.outputs.slug }}" ]]
-          [[ "AbcdEfghI" == "${{ steps.test-2.outputs.slug-cs }}" ]]
+          [[ "abcdefghi_" == "${{ steps.test-2.outputs.slug }}" ]]
+          [[ "AbcdEfghI_" == "${{ steps.test-2.outputs.slug-cs }}" ]]
           [[ "abcdefghi" == "${{ steps.test-2.outputs.slug-url }}" ]]
           [[ "AbcdEfghI" == "${{ steps.test-2.outputs.slug-url-cs }}" ]]          

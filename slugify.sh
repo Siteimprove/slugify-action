@@ -37,8 +37,8 @@ echo "SLUG_CS: ${SLUG_CS}"
 echo "SLUG_URL: ${SLUG_URL}"
 echo "SLUG_URL_CS: ${SLUG_URL_CS}"
 
-echo "::set-output name=value::${VALUE}"
-echo "::set-output name=slug::${SLUG}"
-echo "::set-output name=slug-cs::${SLUG_CS}"
-echo "::set-output name=slug-url::${SLUG_URL}"
-echo "::set-output name=slug-url-cs::${SLUG_URL_CS}"
+echo "value=${VALUE}" >> $GITHUB_OUTPUT
+echo "slug=${SLUG}" >> $GITHUB_OUTPUT
+echo "slug-cs=${SLUG_CS}" >> $GITHUB_OUTPUT
+echo "slug-url=${SLUG_URL}" >> $GITHUB_OUTPUT
+echo "slug-url-cs=${SLUG_URL_CS}" >> $GITHUB_OUTPUT
